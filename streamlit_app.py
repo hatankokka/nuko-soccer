@@ -9,6 +9,15 @@ import streamlit.components.v1 as components
 
 
 APP_DIR = Path(__file__).parent
+WATCHED_FILES = (
+    APP_DIR / "index.html",
+    APP_DIR / "styles.css",
+    APP_DIR / "game.js",
+    APP_DIR / "assets" / "zukkoke-nuko.png",
+    APP_DIR / "assets" / "enemy-cat-sheet.png",
+    APP_DIR / "assets" / "whistle.mp3",
+    APP_DIR / "assets" / "8-bit-aggressive1.mp3",
+)
 
 
 def data_uri(path: Path, mime_type: str) -> str:
@@ -16,8 +25,19 @@ def data_uri(path: Path, mime_type: str) -> str:
     return f"data:{mime_type};base64,{encoded}"
 
 
+def source_signature() -> tuple[tuple[str, int, int], ...]:
+    return tuple(
+        (
+            path.relative_to(APP_DIR).as_posix(),
+            path.stat().st_mtime_ns,
+            path.stat().st_size,
+        )
+        for path in WATCHED_FILES
+    )
+
+
 @st.cache_data(show_spinner=False)
-def build_game_html() -> str:
+def build_game_html(signature: tuple[tuple[str, int, int], ...]) -> str:
     html = (APP_DIR / "index.html").read_text(encoding="utf-8")
     css = (APP_DIR / "styles.css").read_text(encoding="utf-8")
     js = (APP_DIR / "game.js").read_text(encoding="utf-8")
@@ -66,7 +86,7 @@ def main() -> None:
         unsafe_allow_html=True,
     )
 
-    components.html(build_game_html(), height=820, scrolling=False)
+    components.html(build_game_html(source_signature()), height=820, scrolling=False)
 
 
 if __name__ == "__main__":
