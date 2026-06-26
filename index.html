@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ずっこけぬこサッカー</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="game-panel" aria-label="ずっこけぬこサッカー">
+        <div class="topbar">
+          <div>
+            <h1>ずっこけぬこサッカー</h1>
+          </div>
+          <div class="status">
+            <span id="levelLabel">レベル選択</span>
+            <span id="bestLabel">ベスト 0</span>
+          </div>
+        </div>
+
+        <div class="canvas-frame">
+          <canvas id="game" width="960" height="640"></canvas>
+          <div id="overlay" class="overlay">
+            <div class="overlay-card">
+              <strong id="overlayTitle">ずっこけぬこサッカー</strong>
+              <span id="overlayText"></span>
+              <label class="language-control">
+                <span id="languageLabel">Language</span>
+                <select id="languageSelect" aria-label="Language"></select>
+              </label>
+              <div id="difficultyButtons" class="difficulty-buttons">
+                <button type="button" data-difficulty="easy">
+                  <span class="difficulty-name">にゃんたん</span>
+                  <span class="difficulty-score">スコア x1.0</span>
+                </button>
+                <button type="button" data-difficulty="normal">
+                  <span class="difficulty-name">ふつにゃん</span>
+                  <span class="difficulty-score">スコア x1.5</span>
+                </button>
+                <button type="button" data-difficulty="hard">
+                  <span class="difficulty-name">むずにゃしい</span>
+                  <span class="difficulty-score">スコア x2.0</span>
+                </button>
+              </div>
+              <button id="startButton" type="button">スタート</button>
+            </div>
+          </div>
+        </div>
+
+        <p class="credit">
+          BGM 出典：フリーBGM「8-bit Aggressive1」 / 作（編）曲：もっぴーさうんど /
+          <a href="https://www.youtube.com/watch?v=FSG03LjNsiU" target="_blank" rel="noopener noreferrer">DOVA-SYNDROME公式 作曲者 もっぴーさうんど</a><br />
+          SE 出典：フリー効果音素材「審判のホイッスル」 / 制作：NaruIDEA /
+          <a href="https://dova-s.jp/se/detail/1300/track/2" target="_blank" rel="noopener noreferrer">DOVA-SYNDROME</a>
+        </p>
+
+      </section>
+    </main>
+    <script src="game.js?v=streamlit-ready-1"></script>
+  </body>
+</html>
